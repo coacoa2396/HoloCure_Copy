@@ -4,22 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Grid
-  - Weapon
-  - ObjectSensor
-  - FilpSensor
-  - OutLineSensor
-  - GridSensor
-  - VTuber
-  - ScreenSensor
-  - Exp
-  - Enemy
-  - EnemyBody
+  - Area
+  - Grounds
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BackGround
   - Water
   - UI
   - Player
@@ -49,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGound
+    uniqueID: 1881094487
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1937870981
     locked: 0

@@ -5,15 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector2 inputVec;
+    public Vector2 inputVec;
     [SerializeField] float speed;
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer spriter;
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
+        animator.SetFloat("Speed", inputVec.magnitude);
+
         if (inputVec.x != 0)
         {
             spriter.flipX = inputVec.x < 0;
@@ -33,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         
-        rigid.MovePosition(rigid.position + nextVec);
+        rigid.MovePosition(rigid.position + nextVec);        
     }
 
     void OnMove(InputValue value)
