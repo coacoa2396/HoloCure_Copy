@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grid
+  - Weapon
+  - ObjectSensor
+  - FilpSensor
+  - OutLineSensor
+  - GridSensor
+  - VTuber
+  - ScreenSensor
+  - Exp
+  - Enemy
+  - EnemyBody
   layers:
   - Default
   - TransparentFX
@@ -11,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
