@@ -5,60 +5,41 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum State { Idle, Jump, Move }
+    Vector2 inputVec;
+    [SerializeField] float speed;
+    [SerializeField] Rigidbody2D rigid;
+    [SerializeField] SpriteRenderer spriter;
 
-    int hp;
-    public int Hp { get { return hp; } set { hp = value; } }
-
-    public PlayerInput playerInput;
-
-    StateMachine<State> stateMachine = new StateMachine<State>();
-
-    private void Start()
+    private void Awake()
     {
-        stateMachine.AddState(State.Idle, new IdleState());
-        stateMachine.AddState(State.Jump, new JumpState());
-        stateMachine.AddState(State.Move, new MoveState());
-
-        stateMachine.Start(State.Idle);
-    }
-
-    private void Update()
-    {
-        stateMachine.Update();
-    }
-
-    private void LateUpdate()
-    {
-        stateMachine.LateUpdate();
+        rigid = GetComponent<Rigidbody2D>();
+        spriter = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
     {
-        stateMachine.FixedUpdate();
+        Move();
     }
 
-    class PlayerState : BaseState<State>
+    private void LateUpdate()
     {
-        protected PlayerController controller;
-        protected PlayerInput input => controller.playerInput;
-    }
-
-    class IdleState : PlayerState
-    {
-        public override void Enter()
+        if (inputVec.x != 0)
         {
-            int value = controller.hp;
+            spriter.flipX = inputVec.x < 0;
         }
     }
 
-    class JumpState : PlayerState
+    void Move()
     {
+        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         
+        rigid.MovePosition(rigid.position + nextVec);
     }
 
-    class MoveState : PlayerState
+    void OnMove(InputValue value)
     {
-
+        Vector2 input = value.Get<Vector2>();
+        inputVec.x = input.x;
+        inputVec.y = input.y;
     }
 }
