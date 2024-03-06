@@ -9,7 +9,9 @@ public class GroundController : MonoBehaviour
 
     private void Awake()
     {
-        coll = GetComponent<Collider2D>();        
+        coll = GetComponent<Collider2D>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
