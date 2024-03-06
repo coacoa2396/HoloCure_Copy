@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
-    Collider2D coll;
+    
     [SerializeField] PlayerController player;
 
     private void Awake()
     {
-        coll = GetComponent<Collider2D>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

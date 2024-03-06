@@ -6,17 +6,7 @@ TagManager:
   tags:
   - Area
   - Grounds
-  - Weapon
-  - VTuber
-  - ObjectSensor
-  - FilpSensor
-  - GridSensor
-  - ScreenSensor
-  - OutLineSensor
-  - Enemy
-  - EnemyBody
-  - Exp
-  - Grid
+  - Monster
   layers:
   - Default
   - TransparentFX
