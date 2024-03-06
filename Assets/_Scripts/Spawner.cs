@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        Manager.Pool.CreatePool(monsterPrefab[0], 100, 200);
+        Manager.Pool.CreatePool(monsterPrefab[0], 128, 512);
     }
 
     private void Start()

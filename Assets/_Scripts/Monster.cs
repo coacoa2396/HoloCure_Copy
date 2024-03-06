@@ -29,7 +29,7 @@ public class Monster : PooledObject
     protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriter = GetComponent<SpriteRenderer>();
+        spriter = GetComponentInChildren<SpriteRenderer>();
 
     }
 
@@ -71,7 +71,7 @@ public class Monster : PooledObject
     private void OnEnable()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriter = GetComponent<SpriteRenderer>();
+        spriter = GetComponentInChildren<SpriteRenderer>();
 
         isLive = true;
 
