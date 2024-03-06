@@ -8,7 +8,7 @@ public class GameScene : BaseScene
 
     public override IEnumerator LoadingRoutine()
     {
-        throw new System.NotImplementedException();
+        yield return null;
     }
 
     

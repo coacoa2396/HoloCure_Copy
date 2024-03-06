@@ -31,13 +31,14 @@ public class Monster : PooledObject
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
 
-        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        target = player.GetComponent<Rigidbody2D>();
-
-        isLive = true;
     }
 
-    protected  void Tracing(Rigidbody2D target)
+    private void Update()
+    {
+        Tracing(target);
+    }
+
+    protected void Tracing(Rigidbody2D target)
     {
         if (isLive == false)
             return;
@@ -65,5 +66,16 @@ public class Monster : PooledObject
 
         Rigidbody2D tarfet = collision.gameObject.GetComponent<Rigidbody2D>();
         Hit(target);
+    }
+
+    private void OnEnable()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        spriter = GetComponent<SpriteRenderer>();
+
+        isLive = true;
+
+        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        target = player.GetComponent<Rigidbody2D>();
     }
 }
