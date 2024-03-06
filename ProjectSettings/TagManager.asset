@@ -6,6 +6,17 @@ TagManager:
   tags:
   - Area
   - Grounds
+  - Weapon
+  - VTuber
+  - ObjectSensor
+  - FilpSensor
+  - GridSensor
+  - ScreenSensor
+  - OutLineSensor
+  - Enemy
+  - EnemyBody
+  - Exp
+  - Grid
   layers:
   - Default
   - TransparentFX
@@ -42,6 +53,9 @@ TagManager:
   m_SortingLayers:
   - name: BackGound
     uniqueID: 1881094487
+    locked: 0
+  - name: Monster
+    uniqueID: 128698937
     locked: 0
   - name: Default
     uniqueID: 0

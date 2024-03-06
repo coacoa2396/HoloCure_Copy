@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class Bloom : Monster
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         MaxHP = 50;
         HP = 50;
         ATK = 3;
+        Speed = 2;
+    }
+
+    private void FixedUpdate()
+    {
+        Tracing(target);    
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
     }
 
     protected override void TakeDamage(int damage)
@@ -16,14 +28,14 @@ public class Bloom : Monster
         
     }
 
-    protected override void Tracing(PlayerController player)
+    protected override void Tracing(Rigidbody2D target)
     {
-        base.Tracing(player);
+        base.Tracing(target);
     }
 
-    protected override void Hit(PlayerController player)
+    protected override void Hit(Rigidbody2D target)
     {
-        base.Hit(player);
+        base.Hit(target);
     }
 
     protected override void OnTriggerStay2D(Collider2D collision)
