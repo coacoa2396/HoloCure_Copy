@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     int hp;
     int maxHp;
@@ -21,9 +21,12 @@ public abstract class Monster : MonoBehaviour
     [SerializeField] protected SpriteRenderer spriter;
     
 
-    protected abstract void TakeDamage(int damage);
+    protected void TakeDamage(int damage)
+    {
 
-    protected virtual void Awake()
+    }
+
+    protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
@@ -34,7 +37,7 @@ public abstract class Monster : MonoBehaviour
         isLive = true;
     }
 
-    protected virtual void Tracing(Rigidbody2D target)
+    protected  void Tracing(Rigidbody2D target)
     {
         if (isLive == false)
             return;
@@ -45,17 +48,17 @@ public abstract class Monster : MonoBehaviour
 
     }
 
-    protected virtual void LateUpdate()
+    protected void LateUpdate()
     {
         spriter.flipX = target.position.x < rigid.position.x;
     }
 
-    protected virtual void Hit(Rigidbody2D target)
+    protected void Hit(Rigidbody2D target)
     {
 
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D collision)
+    protected void OnTriggerStay2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Player"))
             return;
