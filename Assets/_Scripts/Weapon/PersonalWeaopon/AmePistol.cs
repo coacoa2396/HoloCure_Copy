@@ -8,7 +8,7 @@ public class AmePistol : RangedWeapon
     {
         base.Awake();
         bulletCount = 3;
-        interval = 2;
+        interval = 2f;
     }
 
     protected override void Update()
