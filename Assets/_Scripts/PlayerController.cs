@@ -6,7 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Vector2 inputVec;
+
+    [Header("Spec")]
     [SerializeField] float speed;
+    [SerializeField] int maxHp;
+    [SerializeField] int hp;
+
+    [SerializeField] public int HP { get { return hp; } set { hp = value; } }
+    [SerializeField] public int MaxHP { get { return maxHp; } set { maxHp = value; } }
+
+    [Header("Component")]
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer spriter;
     [SerializeField] Animator animator;
