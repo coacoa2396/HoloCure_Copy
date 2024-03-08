@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmePistol : RangedWeapon
+public class AmeBullet : Bullet
 {
     protected override void Awake()
     {
         base.Awake();
-        bulletCount = 3;
-        interval = 2;
+        atk = 10;
+        count = 2;
+        force = 15;
     }
 
     protected override void Update()

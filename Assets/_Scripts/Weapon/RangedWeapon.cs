@@ -3,10 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedWeapon : MonoBehaviour
-{
-    protected int atk;
-    protected float ranged;
-    protected int speed;
+{          
     protected int bulletCount;
-    protected int count; // 관통하는 수
+    protected float timer;
+    protected float interval;
+
+    [SerializeField] protected Bullet bullet;
+    [SerializeField] protected PlayerController player;
+    
+
+    protected virtual void Awake()
+    {
+        player = GetComponentInParent<PlayerController>();        
+    }
+
+    protected virtual void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer > interval)
+        {
+            timer = 0f;
+            PooledObject instance = Manager.Pool.GetPool(bullet, transform.position, Quaternion.identity);
+            instance.transform.right = player.aimDir;
+        }
+    }
 }

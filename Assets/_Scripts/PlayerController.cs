@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] SpriteRenderer spriter;
     [SerializeField] Animator animator;
+
+    [Header("Event")]
+    [SerializeField] public UnityEvent OnFired;
+
+    public Vector2 aimDir;
 
     private void Awake()
     {
@@ -54,5 +60,19 @@ public class PlayerController : MonoBehaviour
         Vector2 input = value.Get<Vector2>();
         inputVec.x = input.x;
         inputVec.y = input.y;
+    }
+
+    void Fire()
+    {
+        OnFired?.Invoke();
+    }
+        
+    void OnAim(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
+        Vector2 pos = Camera.main.ScreenToWorldPoint(input);
+
+        aimDir = pos - (Vector2)transform.position;
+        aimDir.Normalize();
     }
 }
