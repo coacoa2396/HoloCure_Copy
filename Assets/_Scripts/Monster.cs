@@ -48,7 +48,7 @@ public class Monster : PooledObject
         if (!(collision.gameObject.transform.tag == "Player"))
             return;
 
-        Rigidbody2D tarfet = collision.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D target = collision.gameObject.GetComponent<Rigidbody2D>();
         Hit(target);
     }
 
@@ -65,6 +65,14 @@ public class Monster : PooledObject
         HP = MaxHP;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!(collision.gameObject.transform.tag == "Weapon"))
+            return;
+
+        // 데미지를 줄 수 있는 오브젝트들에게 IHitable 만들어서 인터페이스에 데미지를 추가해서 구현하기
+    }
+
     protected void Tracing(Rigidbody2D target)
     {
         if (isLive == false)
@@ -78,7 +86,7 @@ public class Monster : PooledObject
 
     protected void Hit(Rigidbody2D target)
     {
-
+        // 플레이어한테 TakeDamage 함수 만들어서 이동하기
     }
 
     protected void TakeDamage(int damage)
