@@ -71,6 +71,10 @@ public class Monster : PooledObject
             return;
 
         // 데미지를 줄 수 있는 오브젝트들에게 IHitable 만들어서 인터페이스에 데미지를 추가해서 구현하기
+        // atk를 인터페이스로는 구현을 할 수가 없으니 추상클래스로 만들어서 상속하기?
+        // 아니 Hitable클래스는 필요가 없다
+        // 데미지를 입을 클래스는 총알과 근거리무기로 되어있고 각각 해당 클래스에서
+        // Hit()함수를 만들어서 트리거엔터 체크를 통해 몬스터와 만나면 몬스터의 TakeDamage함수를 발동시켜주면 됨
     }
 
     protected void Tracing(Rigidbody2D target)
