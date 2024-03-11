@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - GameScene
   - Weapon
+  - DeadHeart
   layers:
   - Default
   - TransparentFX

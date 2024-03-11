@@ -21,14 +21,17 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
     [SerializeField] protected SpriteRenderer spriter;
-
+    [SerializeField] protected Animator animator;
+    [SerializeField] GameObject anim;
 
 
     protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
-        MaxHP = 400;
+        animator = GetComponent<Animator>();
+        
+        MaxHP = 20;
         ATK = 2;
     }
 
@@ -93,12 +96,23 @@ public class Monster : PooledObject, IDamagable
 
         if (hp > 0)
             return;
+        isLive = false;
+        anim.SetActive(true);
+        animator.SetTrigger("Dead");
+        StartCoroutine(DieAnim());
+    }
 
+    IEnumerator DieAnim()
+    {
+        yield return new WaitForSeconds(1f);
         Die();
     }
 
     public void DamagedEffect(Vector2 targetPos)
     {
+        if (isLive == false)
+            return;
+
         spriter.color = new Color(1, 1, 1, 0.4f);    // 컬러와 투명도(알파값) 적용
 
         Vector2 knockbackDir = ((Vector2)transform.position - targetPos).normalized;    // 튕겨나가는 방향
