@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     public Vector2 inputVec;
 
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Event")]
     [SerializeField] public UnityEvent OnFired;
+    [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
 
@@ -31,6 +33,9 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+        HP = 20;
+
     }
 
     private void FixedUpdate()
@@ -48,6 +53,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!(collision.gameObject.transform.tag == "Monster"))
+            return;
+
+        
+        Monster monster = collision.gameObject.GetComponent<Monster>();
+
+        float timer = 1.5f;
+        timer += Time.deltaTime;
+        if (timer > 1.5f)
+        {
+            TakeDamage(monster.ATK);
+            DamagedEffect(monster.transform.position);
+        }
+    }
+
     void Move()
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
@@ -61,11 +83,6 @@ public class PlayerController : MonoBehaviour
         inputVec.x = input.x;
         inputVec.y = input.y;
     }
-
-    void Fire()
-    {
-        OnFired?.Invoke();
-    }
         
     void OnAim(InputValue value)
     {
@@ -74,5 +91,33 @@ public class PlayerController : MonoBehaviour
 
         aimDir = pos - (Vector2)transform.position;
         aimDir.Normalize();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+        
+        if (HP > 0)
+            return;
+
+        Die();
+    }
+
+    public void DamagedEffect(Vector2 targetPos)
+    {
+        spriter.color = new Color(1, 1, 1, 0.4f);    // 컬러와 투명도(알파값) 적용        
+
+        Invoke("OffDamaged", 1.5f);
+    }
+
+    void OffDamaged()
+    {                                 
+        spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
+    }
+
+    public void Die()
+    {
+        
+        OnDied?.Invoke();
     }
 }

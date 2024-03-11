@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagable
+public class MeleeWeapon : Weapon
 {
-    public void TakeDamage(int damage);    
+    
 }

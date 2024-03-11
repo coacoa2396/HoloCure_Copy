@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : PooledObject
+public class Monster : PooledObject, IDamagable
 {
-    int hp;
-    int maxHp;
-    int atk;
-
     [Header("Spec")]
+    [SerializeField] int hp;
+    [SerializeField] int maxHp;
+    [SerializeField] int atk;
     [SerializeField] int speed;
-    [SerializeField] public int HP { get { return hp; } set { hp = value; } }
-    [SerializeField] public int MaxHP { get { return maxHp; } set { maxHp = value; } }
-    [SerializeField] public int ATK { get { return atk; } set { atk = value; } }
-    [SerializeField] public int Speed { get { return speed; } set { speed = value; } }
+
+    public int HP { get { return hp; } set { hp = value; } }
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
+    public int ATK { get { return atk; } set { atk = value; } }
+    public int Speed { get { return speed; } set { speed = value; } }
 
     [SerializeField] protected bool isLive;
 
@@ -28,7 +28,8 @@ public class Monster : PooledObject
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
-
+        MaxHP = 400;
+        ATK = 2;
     }
 
     private void FixedUpdate()
@@ -43,14 +44,7 @@ public class Monster : PooledObject
     }
 
 
-    protected void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!(collision.gameObject.transform.tag == "Player"))
-            return;
 
-        Rigidbody2D target = collision.gameObject.GetComponent<Rigidbody2D>();
-        Hit(target);
-    }
 
     private void OnEnable()
     {
@@ -65,16 +59,19 @@ public class Monster : PooledObject
         HP = MaxHP;
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Weapon"))
             return;
 
-        // 데미지를 줄 수 있는 오브젝트들에게 IHitable 만들어서 인터페이스에 데미지를 추가해서 구현하기
-        // atk를 인터페이스로는 구현을 할 수가 없으니 추상클래스로 만들어서 상속하기?
-        // 아니 Hitable클래스는 필요가 없다
-        // 데미지를 입을 클래스는 총알과 근거리무기로 되어있고 각각 해당 클래스에서
-        // Hit()함수를 만들어서 트리거엔터 체크를 통해 몬스터와 만나면 몬스터의 TakeDamage함수를 발동시켜주면 됨
+        Debug.Log("몬스터 피격");
+
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+
+        TakeDamage(weapon.atk);
+        DamagedEffect(weapon.transform.position);
     }
 
     protected void Tracing(Rigidbody2D target)
@@ -84,22 +81,40 @@ public class Monster : PooledObject
 
         Vector2 targetDir = (target.transform.position - transform.position).normalized;
         Vector2 nextDir = targetDir * Speed * Time.fixedDeltaTime;
+
+        
         rigid.MovePosition(rigid.position + nextDir);
 
     }
 
-    protected void Hit(Rigidbody2D target)
+    public void TakeDamage(int damage)
     {
-        // 플레이어한테 TakeDamage 함수 만들어서 이동하기
+        hp -= damage;
+
+        if (hp > 0)
+            return;
+
+        Die();
     }
 
-    protected void TakeDamage(int damage)
+    public void DamagedEffect(Vector2 targetPos)
     {
+        spriter.color = new Color(1, 1, 1, 0.4f);    // 컬러와 투명도(알파값) 적용
 
+        Vector2 knockbackDir = ((Vector2)transform.position - targetPos).normalized;    // 튕겨나가는 방향
+        //rigid.AddForce(knockbackDir * 5, ForceMode2D.Impulse);       // 반작용으로 튕겨나가는 모습 구현
+        rigid.transform.Translate(knockbackDir * 0.12f);
+
+        Invoke("OffDamaged", 0.05f);
+    }
+
+    void OffDamaged()
+    {
+        spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
     }
 
     protected void Die()
     {
-
+        gameObject.SetActive(false);
     }
 }

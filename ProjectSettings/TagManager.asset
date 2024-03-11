@@ -8,6 +8,7 @@ TagManager:
   - Grounds
   - Monster
   - GameScene
+  - Weapon
   layers:
   - Default
   - TransparentFX

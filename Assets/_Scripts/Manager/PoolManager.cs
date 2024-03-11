@@ -15,7 +15,9 @@ public class PoolManager : Singleton<PoolManager>
 
         poolDic.Add(prefab.GetInstanceID(), objectPool);
     }
+
     
+
     public void DestroyPool(PooledObject prefab)
     {
         ObjectPool objectPool = poolDic[prefab.GetInstanceID()];
