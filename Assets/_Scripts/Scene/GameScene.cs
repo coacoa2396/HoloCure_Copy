@@ -8,17 +8,14 @@ public class GameScene : BaseScene
     [SerializeField] Bullet[] Weapons;
     public float gameTime;
     public float maxGameTime = 6 * 10f;
-
+    public int level;
     private void Awake()
     {
-        Manager.Pool.CreatePool(monsterPrefab[0], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[1], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[2], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[3], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[4], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[5], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[6], 128, 512);
-        Manager.Pool.CreatePool(monsterPrefab[7], 128, 512);
+        for (int i = 0; i < monsterPrefab.Length; i++)
+        {
+            Manager.Pool.CreatePool(monsterPrefab[i], 128, 1024);
+        }
+
 
         Manager.Pool.CreatePool(Weapons[0], 128, 512);
     }
@@ -31,8 +28,11 @@ public class GameScene : BaseScene
         {
             gameTime = maxGameTime;
         }
+    }
 
-
+    private void LateUpdate()
+    {
+        level = (int)(gameTime / 10f);
     }
 
     public override IEnumerator LoadingRoutine()
@@ -40,5 +40,5 @@ public class GameScene : BaseScene
         yield return null;
     }
 
-    
+
 }

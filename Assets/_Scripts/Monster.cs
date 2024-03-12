@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Monster : PooledObject, IDamagable
@@ -8,12 +10,12 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] int hp;
     [SerializeField] int maxHp;
     [SerializeField] int atk;
-    [SerializeField] int speed;
+    [SerializeField] float speed;
 
     public int HP { get { return hp; } set { hp = value; } }
     public int MaxHP { get { return maxHp; } set { maxHp = value; } }
     public int ATK { get { return atk; } set { atk = value; } }
-    public int Speed { get { return speed; } set { speed = value; } }
+    public float Speed { get { return speed; } set { speed = value; } }
 
     [SerializeField] protected bool isLive;
 
@@ -21,19 +23,22 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
     [SerializeField] protected SpriteRenderer spriter;
-    [SerializeField] protected Animator animator;
-    [SerializeField] GameObject anim;
+    [SerializeField] protected Animator animator;   
+    [SerializeField] GameObject anim;    
+    [SerializeField] GameScene scene;
 
+    private List<Dictionary<string, object>> csv;
 
     protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        
-        MaxHP = 20;
-        ATK = 2;
+        animator = GetComponent<Animator>();        
+        scene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
+        csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");        
     }
+
+    
 
     private void FixedUpdate()
     {
@@ -59,6 +64,11 @@ public class Monster : PooledObject, IDamagable
         PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         target = player.GetComponent<Rigidbody2D>();
 
+        MaxHP = (int)csv[scene.level]["hp"];
+        Speed = (float)csv[scene.level]["speed"];
+        ATK = (int)csv[scene.level]["atk"];
+        
+
         HP = MaxHP;
     }
 
@@ -67,6 +77,9 @@ public class Monster : PooledObject, IDamagable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Weapon"))
+            return;
+
+        if (!isLive)
             return;
 
         Debug.Log("몬스터 피격");
@@ -85,7 +98,7 @@ public class Monster : PooledObject, IDamagable
         Vector2 targetDir = (target.transform.position - transform.position).normalized;
         Vector2 nextDir = targetDir * Speed * Time.fixedDeltaTime;
 
-        
+
         rigid.MovePosition(rigid.position + nextDir);
 
     }
@@ -98,13 +111,20 @@ public class Monster : PooledObject, IDamagable
             return;
         isLive = false;
         anim.SetActive(true);
-        animator.SetTrigger("Dead");
-        StartCoroutine(DieAnim());
+
+        if (spriter.flipX)
+        {
+            animator.SetTrigger("Dead_R");
+        }
+        else
+        {
+            animator.SetTrigger("Dead_L");
+        }
     }
 
     IEnumerator DieAnim()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Die();
     }
 
@@ -127,7 +147,7 @@ public class Monster : PooledObject, IDamagable
         spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
     }
 
-    protected void Die()
+    public void Die()
     {
         gameObject.SetActive(false);
     }

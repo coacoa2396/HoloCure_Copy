@@ -11,10 +11,10 @@ public class TitleVtuberMove : MonoBehaviour
     private float speed;
     private float elapsedTime;
 
-    private Transform transform;
+    
     private void Awake()
     {
-        transform = gameObject.GetComponent<Transform>();
+        
     }
 
     private void Start()

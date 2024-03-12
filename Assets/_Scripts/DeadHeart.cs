@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class DeadHeart : MonoBehaviour
 {
-    [SerializeField] Animation animation;
-    
+    [SerializeField] Animator animator;
 
     private void OnEnable()
     {
-        animation.Play();
+        animator.SetTrigger("Heart");
     }
 }
