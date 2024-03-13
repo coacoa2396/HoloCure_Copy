@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         spriter.color = new Color(1, 1, 1, 0.4f);    // 컬러와 투명도(알파값) 적용        
 
-        Invoke("OffDamaged", 1.5f);
+        Invoke("OffDamaged", 0.3f);
     }
 
     void OffDamaged()

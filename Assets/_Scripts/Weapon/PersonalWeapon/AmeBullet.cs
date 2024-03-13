@@ -8,7 +8,7 @@ public class AmeBullet : Bullet
     {
         base.Awake();
         atk = 10;
-        count = 2;
+        per = 2;
         force = 15;
     }
 

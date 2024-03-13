@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameScene : BaseScene
 {
     [SerializeField] Monster[] monsterPrefab;
-    [SerializeField] Bullet[] Weapons;
+    [SerializeField] Weapon[] Weapons;
     public float gameTime;
     public float maxGameTime = 6 * 10f;
     public int level;
@@ -16,8 +16,11 @@ public class GameScene : BaseScene
             Manager.Pool.CreatePool(monsterPrefab[i], 128, 1024);
         }
 
+        for (int i = 0; i < Weapons.Length; i++)
+        {
+            Manager.Pool.CreatePool(Weapons[i], 128, 512);
 
-        Manager.Pool.CreatePool(Weapons[0], 128, 512);
+        }
     }
 
     private void Update()
