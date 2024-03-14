@@ -7,24 +7,27 @@ public class Bullet : Weapon
     
     [SerializeField] public int per; // 관통하는 수
     [SerializeField] protected float force;
-    [SerializeField] Rigidbody2D rigid;
+    [SerializeField] protected Rigidbody2D rigid;
 
     protected virtual void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        
     }
 
     protected virtual void Update()
     {
-        rigid.velocity = transform.right * force;
-        
-        if (gameObject != null)
-            StartCoroutine(Setfalse());
+                
     }
 
-    IEnumerator Setfalse()
+    protected virtual void OnEnable()
     {
-        yield return new WaitForSeconds(5f);
+        if (gameObject != null)
+            StartCoroutine(Setfalse());        
+    }
+
+    protected IEnumerator Setfalse()
+    {
+        yield return new WaitForSeconds(10f);
         gameObject.SetActive(false);
     }
 

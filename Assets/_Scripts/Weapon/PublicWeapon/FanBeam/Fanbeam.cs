@@ -15,7 +15,7 @@ public class Fanbeam : Bullet
 
     protected override void Update() { }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         animator.Play("FanBeam");
     }

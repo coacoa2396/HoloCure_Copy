@@ -39,8 +39,7 @@ public class Spawner : MonoBehaviour
 
         if (timer > elapsedTime)
         {
-            timer = 0f;
-            Debug.Log($"스폰 직전 레벨체크 : {level}");
+            timer = 0f;            
             Spawn(level);
         }
     }

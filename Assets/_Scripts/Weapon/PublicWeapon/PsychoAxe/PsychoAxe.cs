@@ -20,8 +20,9 @@ public class PsychoAxe : Bullet
         ps = GetComponentInChildren<ParticleSystem>();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         initPosition = transform.position;
     }
 
@@ -46,7 +47,7 @@ public class PsychoAxe : Bullet
     
 
 
-    
+    // 시게방향으로 이동 구현
     private void StrikeOperate()
     {
         angle += speed * Time.deltaTime;

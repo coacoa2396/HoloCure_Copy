@@ -6,7 +6,7 @@ public class AmeBullet : Bullet
 {
     protected override void Awake()
     {
-        base.Awake();
+        rigid = GetComponent<Rigidbody2D>();
         atk = 10;
         per = 2;
         force = 15;
@@ -14,6 +14,11 @@ public class AmeBullet : Bullet
 
     protected override void Update()
     {
-        base.Update();
+        rigid.velocity = transform.right * force;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
     }
 }

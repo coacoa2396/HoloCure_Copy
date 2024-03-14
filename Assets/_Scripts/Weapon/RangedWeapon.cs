@@ -24,17 +24,20 @@ public class RangedWeapon : MonoBehaviour
         if (timer > interval)
         {
             timer = 0f;
+            Debug.Log("코루틴실행전");
             StartCoroutine(Fire());
         }
     }
 
-    IEnumerator Fire()
+    protected virtual IEnumerator Fire()
     {
         for (int i = 0; i < bulletCount; i++)
         {
             PooledObject instance = Manager.Pool.GetPool(bullet, transform.position, Quaternion.identity);
+            
             instance.transform.right = player.aimDir;
-
+            //instance.GetComponent<Rigidbody2D>().AddForce
+            
             yield return new WaitForSeconds(0.2f);
         }
 

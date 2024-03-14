@@ -74,15 +74,9 @@ public class Monster : PooledObject, IDamagable
             level = 20;
         }
 
-        MaxHP = (int)csv[level]["hp"];
-        Debug.Log($"체력 : {MaxHP}");
-
-        Speed = (float)csv[level]["speed"];
-        Debug.Log($"스피드 : {Speed}");
-
-        ATK = (int)csv[level]["atk"];
-        Debug.Log($"공격력 : {ATK}");
-
+        MaxHP = (int)csv[level]["hp"];       
+        Speed = (float)csv[level]["speed"];        
+        ATK = (int)csv[level]["atk"];  
 
         HP = MaxHP;
     }
