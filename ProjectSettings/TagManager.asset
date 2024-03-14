@@ -48,6 +48,9 @@ TagManager:
   - name: BackGound
     uniqueID: 1881094487
     locked: 0
+  - name: AOE
+    uniqueID: 4115040545
+    locked: 0
   - name: Monster
     uniqueID: 128698937
     locked: 0

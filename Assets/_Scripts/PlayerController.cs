@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     [Header("Component")]
     [SerializeField] Rigidbody2D rigid;
-    [SerializeField] SpriteRenderer spriter;
+    [SerializeField] public SpriteRenderer spriter;
     [SerializeField] Animator animator;
 
     [Header("Event")]
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
+    
 
     private void Awake()
     {
