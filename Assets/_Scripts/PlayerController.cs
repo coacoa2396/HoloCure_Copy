@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         timer += Time.deltaTime;
         if (timer > 1.5f)
         {
+            timer = 0f;
             TakeDamage(monster.ATK);
             DamagedEffect(monster.transform.position);
         }
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("¾Æ¾ß");
         HP -= damage;
         
         if (HP > 0)

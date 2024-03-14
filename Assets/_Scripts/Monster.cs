@@ -17,20 +17,21 @@ public class Monster : PooledObject, IDamagable
     public int ATK { get { return atk; } set { atk = value; } }
     public float Speed { get { return speed; } set { speed = value; } }
 
-    [SerializeField] protected bool isLive;
 
     [Header("Component")]
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
     [SerializeField] protected SpriteRenderer spriter;
     [SerializeField] protected Animator animator;
-    [SerializeField] GameObject anim;
-    [SerializeField] GameScene scene;
+    [SerializeField] protected GameObject anim;
+    [SerializeField] protected GameScene scene;
+
     [SerializeField] int level;
+    [SerializeField] protected bool isLive;
 
     private List<Dictionary<string, object>> csv;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
@@ -41,13 +42,13 @@ public class Monster : PooledObject, IDamagable
 
 
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Tracing(target);
     }
 
 
-    protected void LateUpdate()
+    protected virtual void LateUpdate()
     {
         spriter.flipX = target.position.x < rigid.position.x;
     }
@@ -55,7 +56,7 @@ public class Monster : PooledObject, IDamagable
 
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
@@ -83,7 +84,7 @@ public class Monster : PooledObject, IDamagable
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Weapon"))
             return;
@@ -112,13 +113,14 @@ public class Monster : PooledObject, IDamagable
 
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         hp -= damage;
 
         if (hp > 0)
             return;
         isLive = false;
+        DieAnim();
         anim.SetActive(true);
 
         if (spriter.flipX)
@@ -131,7 +133,7 @@ public class Monster : PooledObject, IDamagable
         }
     }
 
-    IEnumerator DieAnim()
+    protected virtual IEnumerator DieAnim()
     {
         yield return new WaitForSeconds(0.5f);
         Die();
@@ -156,7 +158,7 @@ public class Monster : PooledObject, IDamagable
         spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
     }
 
-    public void Die()
+    public virtual void Die()
     {
         gameObject.SetActive(false);
     }

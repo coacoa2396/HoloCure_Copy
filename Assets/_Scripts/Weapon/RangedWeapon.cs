@@ -24,7 +24,7 @@ public class RangedWeapon : MonoBehaviour
         if (timer > interval)
         {
             timer = 0f;
-            Debug.Log("코루틴실행전");
+            
             StartCoroutine(Fire());
         }
     }
