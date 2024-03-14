@@ -13,10 +13,11 @@ public class Boss : Monster
         PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         target = player.GetComponent<Rigidbody2D>();
 
-        MaxHP = 2000;
+        MaxHP = 1;
         ATK = 25;
         Speed = 2;
         isLive = true;
+        HP = MaxHP;
     }
 
     protected override void OnEnable()
@@ -51,7 +52,7 @@ public class Boss : Monster
         if (HP > 0)
             return;
         isLive = false;
-        DieAnim();
+        StartCoroutine(DieAnim());
         
 
         //if (spriter.flipX)
@@ -64,6 +65,11 @@ public class Boss : Monster
         //}
     }
 
+    public override void DamagedEffect(Vector2 targetPos)
+    {
+        
+    }
+
     protected override IEnumerator DieAnim()
     {
         yield return new WaitForSeconds(0.5f);
@@ -71,8 +77,7 @@ public class Boss : Monster
     }
 
     public override void Die()
-    {
-        isLive = false;
+    {        
         Destroy(gameObject);
     }
 }

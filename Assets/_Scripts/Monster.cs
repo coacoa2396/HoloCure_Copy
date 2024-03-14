@@ -96,7 +96,9 @@ public class Monster : PooledObject, IDamagable
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
 
+        
         TakeDamage(weapon.atk);
+        
         DamagedEffect(weapon.transform.position);
     }
 
@@ -115,6 +117,7 @@ public class Monster : PooledObject, IDamagable
 
     public virtual void TakeDamage(int damage)
     {
+        Debug.Log("테이크데미지");
         hp -= damage;
 
         if (hp > 0)
@@ -139,8 +142,9 @@ public class Monster : PooledObject, IDamagable
         Die();
     }
 
-    public void DamagedEffect(Vector2 targetPos)
+    public virtual void DamagedEffect(Vector2 targetPos)
     {
+        Debug.Log("데미지이펙트");
         if (isLive == false)
             return;
 
