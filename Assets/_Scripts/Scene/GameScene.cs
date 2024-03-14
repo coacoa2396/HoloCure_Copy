@@ -7,7 +7,7 @@ public class GameScene : BaseScene
     [SerializeField] Monster[] monsterPrefab;
     [SerializeField] Weapon[] Weapons;
     public float gameTime;
-    public float maxGameTime = 6 * 10f;
+    public float maxGameTime = 4 * 10f;
     public int level;
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class GameScene : BaseScene
 
     private void LateUpdate()
     {
-        level = (int)(gameTime / 10f);
+        level = (int)(gameTime / 2f);        
     }
 
     public override IEnumerator LoadingRoutine()

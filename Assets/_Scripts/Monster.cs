@@ -23,9 +23,10 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
     [SerializeField] protected SpriteRenderer spriter;
-    [SerializeField] protected Animator animator;   
-    [SerializeField] GameObject anim;    
+    [SerializeField] protected Animator animator;
+    [SerializeField] GameObject anim;
     [SerializeField] GameScene scene;
+    [SerializeField] int level;
 
     private List<Dictionary<string, object>> csv;
 
@@ -33,12 +34,12 @@ public class Monster : PooledObject, IDamagable
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();
         scene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
-        csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");        
+        csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");
     }
 
-    
+
 
     private void FixedUpdate()
     {
@@ -64,10 +65,24 @@ public class Monster : PooledObject, IDamagable
         PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         target = player.GetComponent<Rigidbody2D>();
 
-        MaxHP = (int)csv[scene.level]["hp"];
-        Speed = (float)csv[scene.level]["speed"];
-        ATK = (int)csv[scene.level]["atk"];
-        
+        if (scene.level < 20)
+        {
+            level = scene.level;
+        }
+        else
+        {
+            level = 20;
+        }
+
+        MaxHP = (int)csv[level]["hp"];
+        Debug.Log($"체력 : {MaxHP}");
+
+        Speed = (float)csv[level]["speed"];
+        Debug.Log($"스피드 : {Speed}");
+
+        ATK = (int)csv[level]["atk"];
+        Debug.Log($"공격력 : {ATK}");
+
 
         HP = MaxHP;
     }

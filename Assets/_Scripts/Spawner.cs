@@ -25,13 +25,22 @@ public class Spawner : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        level = (int)(gameScene.gameTime / 10f);
-        elapsedTime = (float)csv[gameScene.level]["spawnTime"];
+        level = (int)(gameScene.gameTime / 2f);
+
+        if (level < 20)
+        {
+            elapsedTime = (float)csv[gameScene.level]["spawnTime"];
+        }
+        else
+        {
+            level = 20;
+            elapsedTime = (float)csv[20]["spawnTime"];
+        }
 
         if (timer > elapsedTime)
         {
             timer = 0f;
-            Debug.Log($"생성 전 레벨 : {level}");
+            Debug.Log($"스폰 직전 레벨체크 : {level}");
             Spawn(level);
         }
     }
@@ -48,6 +57,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    
+
 
 }
