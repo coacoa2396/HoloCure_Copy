@@ -52,17 +52,8 @@ public class Boss : Monster
         if (HP > 0)
             return;
         isLive = false;
-        StartCoroutine(DieAnim());
-        
+        StartCoroutine(DieAnim());        
 
-        //if (spriter.flipX)
-        //{
-        //    animator.SetTrigger("Dead_R");
-        //}
-        //else
-        //{
-        //    animator.SetTrigger("Dead_L");
-        //}
     }
 
     public override void DamagedEffect(Vector2 targetPos)

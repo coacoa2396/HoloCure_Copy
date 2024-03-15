@@ -21,7 +21,7 @@ public class Monster : PooledObject, IDamagable
     [Header("Component")]
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
-    [SerializeField] protected SpriteRenderer spriter;
+    [SerializeField] public SpriteRenderer spriter;
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject anim;
     [SerializeField] protected GameScene scene;

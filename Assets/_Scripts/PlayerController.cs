@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
-    
+
 
     private void Awake()
     {
@@ -56,27 +56,44 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!(collision.gameObject.transform.tag == "Monster"))
+        if (!(collision.gameObject.transform.tag == "Monster" ||
+            collision.gameObject.transform.tag == "BossSkill"))
             return;
 
-        
-        Monster monster = collision.gameObject.GetComponent<Monster>();
-
-        float timer = 1.5f;
-        timer += Time.deltaTime;
-        if (timer > 1.5f)
+        if (collision.gameObject.transform.tag == "Monster")
         {
-            timer = 0f;
-            TakeDamage(monster.ATK);
-            DamagedEffect(monster.transform.position);
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+
+            float timer = 1.5f;
+            timer += Time.deltaTime;
+            if (timer > 1.5f)
+            {
+                timer = 0f;
+                TakeDamage(monster.ATK);
+                DamagedEffect(monster.transform.position);
+            }
+        }
+
+        if (collision.gameObject.transform.tag == "BossSkill")
+        {
+            BossSkill bossSkill = collision.gameObject.GetComponent<BossSkill>();
+
+            float timer = 1.5f;
+            timer += Time.deltaTime;
+            if (timer > 1.5f)
+            {
+                timer = 0f;
+                TakeDamage(bossSkill.ATK);
+                DamagedEffect(bossSkill.transform.position);
+            }
         }
     }
 
     void Move()
     {
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        
-        rigid.MovePosition(rigid.position + nextVec);        
+
+        rigid.MovePosition(rigid.position + nextVec);
     }
 
     void OnMove(InputValue value)
@@ -85,7 +102,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         inputVec.x = input.x;
         inputVec.y = input.y;
     }
-        
+
     void OnAim(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
@@ -99,7 +116,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         Debug.Log("아야");
         HP -= damage;
-        
+
         if (HP > 0)
             return;
 
@@ -114,13 +131,13 @@ public class PlayerController : MonoBehaviour, IDamagable
     }
 
     void OffDamaged()
-    {                                 
+    {
         spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
     }
 
     public void Die()
     {
-        
+
         OnDied?.Invoke();
     }
 }
