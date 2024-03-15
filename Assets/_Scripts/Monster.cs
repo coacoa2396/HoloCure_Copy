@@ -44,6 +44,7 @@ public class Monster : PooledObject, IDamagable
 
     protected virtual void FixedUpdate()
     {
+        
         Tracing(target);
     }
 
@@ -75,9 +76,9 @@ public class Monster : PooledObject, IDamagable
             level = 20;
         }
 
-        MaxHP = (int)csv[level]["hp"];       
-        Speed = (float)csv[level]["speed"];        
-        ATK = (int)csv[level]["atk"];  
+        MaxHP = (int)csv[level]["hp"];
+        Speed = (float)csv[level]["speed"];
+        ATK = (int)csv[level]["atk"];
 
         HP = MaxHP;
     }
@@ -96,22 +97,25 @@ public class Monster : PooledObject, IDamagable
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
 
-        
+
         TakeDamage(weapon.atk);
-        
+
         DamagedEffect(weapon.transform.position);
     }
 
-    protected void Tracing(Rigidbody2D target)
+    protected virtual void Tracing(Rigidbody2D target)
     {
         if (isLive == false)
             return;
 
-        Vector2 targetDir = (target.transform.position - transform.position).normalized;
-        Vector2 nextDir = targetDir * Speed * Time.fixedDeltaTime;
+        if (!((Vector2.Distance(transform.position, target.position)) < 0.1f))
+        {
+            Vector2 targetDir = (target.transform.position - transform.position).normalized;
+            Vector2 nextDir = targetDir * Speed * Time.fixedDeltaTime;
 
 
-        rigid.MovePosition(rigid.position + nextDir);
+            rigid.MovePosition(rigid.position + nextDir);
+        }
 
     }
 

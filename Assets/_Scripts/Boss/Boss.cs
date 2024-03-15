@@ -13,11 +13,8 @@ public class Boss : Monster
         PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         target = player.GetComponent<Rigidbody2D>();
 
-        MaxHP = 1;
-        ATK = 25;
-        Speed = 2;
         isLive = true;
-        HP = MaxHP;
+        
     }
 
     protected override void OnEnable()
