@@ -82,21 +82,13 @@ public class EXP : Item
             if (gameObject.GetInstanceID() < collEXP.gameObject.GetInstanceID())
             {
                 collEXP.gameObject.SetActive(false);
-
-
-
                 EXP nextEXP = Manager.Pool.GetPool(expPrefab, nextPos, transform.rotation).GetComponent<EXP>();
-
                 nextEXP.Init(level + 1);
-
-
                 gameObject.SetActive(false);
-
             }
             else
             {
                 gameObject.SetActive(false);
-
             }
         }
     }
@@ -107,19 +99,14 @@ public class EXP : Item
         Vector2 targetDir = (player.transform.position - transform.position).normalized;
         Vector2 nextDir = targetDir * speed * Time.fixedDeltaTime;
 
-
         rigid.MovePosition(rigid.position + nextDir);
     }
 
     public void Init(int level)
     {
         gameObject.name = (string)csv[level]["name"];
-
         amount = (int)csv[level]["amount"];
-
         this.level = level;
-
         spriter.sprite = sprites[level];
-
     }
 }
