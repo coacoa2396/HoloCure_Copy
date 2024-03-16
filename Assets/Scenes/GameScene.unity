@@ -123,6 +123,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &101440253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101440254}
+  - component: {fileID: 101440255}
+  m_Layer: 6
+  m_Name: ItemGetter
+  m_TagString: ItemGetter
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101440254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101440253}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1367555600}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &101440255
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101440253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
 --- !u!1 &106363574
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +496,8 @@ MonoBehaviour:
   - {fileID: 4587417109542644177, guid: 79e7aff4ceeaae04fb48bd45a73a3196, type: 3}
   - {fileID: 3911916689001416039, guid: 67ffcbb941e868d4dab166bc5982f550, type: 3}
   - {fileID: 4644950714547822444, guid: 4693190a84b6084479de1dd209c05355, type: 3}
+  items:
+  - {fileID: 7221153355686737755, guid: 0a7743045dc62b5438c22879c592fed6, type: 3}
   gameTime: 0
   maxGameTime: 1200
   level: 0
@@ -2835,6 +2904,7 @@ Transform:
   - {fileID: 1157214176}
   - {fileID: 2130121830}
   - {fileID: 1974876603}
+  - {fileID: 101440254}
   - {fileID: 1776992930}
   - {fileID: 770112462}
   - {fileID: 2009033656}
@@ -2858,12 +2928,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
+  level: 0
+  needEXP: 0
+  curEXP: 0
   speed: 4
   maxHp: 0
   hp: 0
   rigid: {fileID: 0}
   spriter: {fileID: 0}
   animator: {fileID: 0}
+  ItemGetter: {fileID: 0}
   OnFired:
     m_PersistentCalls:
       m_Calls: []

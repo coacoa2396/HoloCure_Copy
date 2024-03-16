@@ -17,7 +17,6 @@ public class Monster : PooledObject, IDamagable
     public int ATK { get { return atk; } set { atk = value; } }
     public float Speed { get { return speed; } set { speed = value; } }
 
-
     [Header("Component")]
     [SerializeField] protected Rigidbody2D rigid;
     [SerializeField] protected Rigidbody2D target;
@@ -25,6 +24,7 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject anim;
     [SerializeField] protected GameScene scene;
+    [SerializeField] EXP exp;
 
     [SerializeField] int level;
     [SerializeField] protected bool isLive;
@@ -40,11 +40,9 @@ public class Monster : PooledObject, IDamagable
         csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");
     }
 
-
-
     protected virtual void FixedUpdate()
     {
-        
+
         Tracing(target);
     }
 
@@ -53,9 +51,6 @@ public class Monster : PooledObject, IDamagable
     {
         spriter.flipX = target.position.x < rigid.position.x;
     }
-
-
-
 
     protected virtual void OnEnable()
     {
@@ -83,8 +78,6 @@ public class Monster : PooledObject, IDamagable
         HP = MaxHP;
     }
 
-
-
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Weapon"))
@@ -103,6 +96,8 @@ public class Monster : PooledObject, IDamagable
         DamagedEffect(weapon.transform.position);
     }
 
+
+
     protected virtual void Tracing(Rigidbody2D target)
     {
         if (isLive == false)
@@ -116,7 +111,6 @@ public class Monster : PooledObject, IDamagable
 
             rigid.MovePosition(rigid.position + nextDir);
         }
-
     }
 
     public virtual void TakeDamage(int damage)
@@ -127,6 +121,7 @@ public class Monster : PooledObject, IDamagable
         if (hp > 0)
             return;
         isLive = false;
+        DropItem();
         DieAnim();
         anim.SetActive(true);
 
@@ -169,5 +164,15 @@ public class Monster : PooledObject, IDamagable
     public virtual void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    public virtual void DropItem()
+    {
+        int itemLevel = (int)(level / 4);
+        if (itemLevel > 5)
+            itemLevel = 5;
+
+        EXP initEXP = Manager.Pool.GetPool(exp, transform.position, transform.rotation).GetComponent<EXP>();
+        initEXP.Init(itemLevel);
     }
 }

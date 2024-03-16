@@ -12,6 +12,8 @@ TagManager:
   - DeadHeart
   - Spawner
   - BossSkill
+  - ItemGetter
+  - EXP
   layers:
   - Default
   - TransparentFX

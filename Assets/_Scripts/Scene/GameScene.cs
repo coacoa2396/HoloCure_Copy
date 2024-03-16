@@ -6,6 +6,8 @@ public class GameScene : BaseScene
 {
     [SerializeField] Monster[] monsterPrefab;
     [SerializeField] Weapon[] Weapons;
+    [SerializeField] public Item[] items;
+
     public float gameTime;
     public float maxGameTime = 4 * 10f;
     public int level;
@@ -19,7 +21,11 @@ public class GameScene : BaseScene
         for (int i = 0; i < Weapons.Length; i++)
         {
             Manager.Pool.CreatePool(Weapons[i], 128, 512);
+        }
 
+        for (int i = 0;i < items.Length; i++)
+        {
+            Manager.Pool.CreatePool(items[i], 128, 1024);
         }
     }
 

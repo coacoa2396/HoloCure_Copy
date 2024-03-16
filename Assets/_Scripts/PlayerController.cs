@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     public Vector2 inputVec;
 
     [Header("Spec")]
+    [SerializeField] public int level;
+    [SerializeField] public int needEXP;
+    [SerializeField] public int curEXP;
     [SerializeField] float speed;
     [SerializeField] int maxHp;
     [SerializeField] int hp;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] public SpriteRenderer spriter;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject ItemGetter;
 
     [Header("Event")]
     [SerializeField] public UnityEvent OnFired;
@@ -34,9 +38,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        ItemGetter = GameObject.FindGameObjectWithTag("ItemGetter");
 
+        level = 1;
         HP = 20;
-
+        curEXP = 0;
+        needEXP = 100;
     }
 
     private void FixedUpdate()
@@ -52,12 +59,15 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             spriter.flipX = inputVec.x < 0;
         }
+
+        LevelCheck();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!(collision.gameObject.transform.tag == "Monster" ||
-            collision.gameObject.transform.tag == "BossSkill"))
+            collision.gameObject.transform.tag == "BossSkill" ||
+            collision.gameObject.transform.tag == "Item"))
             return;
 
         if (collision.gameObject.transform.tag == "Monster")
@@ -86,7 +96,22 @@ public class PlayerController : MonoBehaviour, IDamagable
                 TakeDamage(bossSkill.ATK);
                 DamagedEffect(bossSkill.transform.position);
             }
-        }
+        }        
+    }
+
+    void LevelCheck()
+    {
+        if (curEXP < needEXP)
+            return;
+
+        LevelUp();
+    }
+
+    void LevelUp()
+    {
+        curEXP = curEXP - needEXP;
+        needEXP += (int)(needEXP * 0.2);
+        level++;
     }
 
     void Move()
