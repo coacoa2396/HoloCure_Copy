@@ -25,6 +25,7 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected GameObject anim;
     [SerializeField] protected GameScene scene;
     [SerializeField] EXP exp;
+    [SerializeField] Coin coin;
 
     [SerializeField] int level;
     [SerializeField] protected bool isLive;
@@ -37,6 +38,8 @@ public class Monster : PooledObject, IDamagable
         spriter = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
+        exp = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>().items[0].GetComponent<EXP>();
+        coin = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>().items[1].GetComponent<Coin>();
         csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");
     }
 
@@ -172,7 +175,12 @@ public class Monster : PooledObject, IDamagable
         if (itemLevel > 5)
             itemLevel = 5;
 
+        // 경험치 아이템
         EXP initEXP = Manager.Pool.GetPool(exp, transform.position, transform.rotation).GetComponent<EXP>();
         initEXP.Init(itemLevel);
+
+        // 코인
+        Coin initCoin = Manager.Pool.GetPool(coin, transform.position, transform.rotation).GetComponent<Coin>();
+        initCoin.Init(itemLevel);
     }
 }

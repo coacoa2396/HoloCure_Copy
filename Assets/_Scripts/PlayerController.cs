@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public int level;
     [SerializeField] public int needEXP;
     [SerializeField] public int curEXP;
+    [SerializeField] public int curCoin;
     [SerializeField] float speed;
     [SerializeField] int maxHp;
     [SerializeField] int hp;
