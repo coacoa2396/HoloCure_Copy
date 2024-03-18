@@ -40,12 +40,7 @@ public class GameScene : BaseScene
 
     private void Update()
     {
-        gameTime += Time.deltaTime;
-
-        if (gameTime > maxGameTime)
-        {
-            gameTime = maxGameTime;
-        }
+        gameTime += Time.deltaTime;        
     }
 
     private void LateUpdate()

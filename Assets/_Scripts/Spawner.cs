@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] Monster[] monsterPrefab;
-    [SerializeField] Transform[] spawnPoint;
-    [SerializeField] GameScene gameScene;
+    [SerializeField] protected Monster[] monsterPrefab;
+    [SerializeField] protected Transform[] spawnPoint;
+    [SerializeField] protected GameScene gameScene;
 
-    float timer;
+    protected float timer;
     public int level;
-    float elapsedTime;
+    protected float elapsedTime;
 
     private List<Dictionary<string, object>> csv;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameScene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
         csv = CSVReader.Read("Data/CSV/MonsterLevelDesign");
@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
 
 
 
-    private void Update()
+    protected virtual void Update()
     {
         timer += Time.deltaTime;
         level = (int)(gameScene.gameTime / 2f);
@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void Spawn(int level)
+    protected void Spawn(int level)
     {
         if (level < 20)
         {

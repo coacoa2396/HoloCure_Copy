@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class TitleScene : BaseScene
 {
-    public void GoCharSelect()
+    public void NewGame()
     {
-        Manager.Scene.LoadScene("CharSelectScene");
+        Manager.Scene.LoadScene("GameScene");
     }
 
     public override IEnumerator LoadingRoutine()
     {
         yield return null;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
