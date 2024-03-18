@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmePistol : RangedWeapon
+public class AmePistol : RangedWeapon, IActiveCheck
 {
     protected override void Awake()
     {

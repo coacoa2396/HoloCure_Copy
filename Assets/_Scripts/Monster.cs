@@ -24,10 +24,10 @@ public class Monster : PooledObject, IDamagable
     [SerializeField] protected Animator animator;
     [SerializeField] protected GameObject anim;
     [SerializeField] protected GameScene scene;
-    [SerializeField] EXP exp;
-    [SerializeField] Coin coin;
+    [SerializeField] protected EXP exp;
+    [SerializeField] protected Coin coin;
 
-    [SerializeField] int level;
+    [SerializeField] protected int level;
     [SerializeField] protected bool isLive;
 
     private List<Dictionary<string, object>> csv;
@@ -83,7 +83,7 @@ public class Monster : PooledObject, IDamagable
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!(collision.gameObject.transform.tag == "Weapon"))
+        if (!(collision.gameObject.transform.tag == "Weapon" || collision.gameObject.transform.tag == "ActiveCheck"))
             return;
 
         if (!isLive)
@@ -118,14 +118,18 @@ public class Monster : PooledObject, IDamagable
 
     public virtual void TakeDamage(int damage)
     {
+        if (!isLive)
+            return;
+
         Debug.Log("테이크데미지");
         hp -= damage;
 
         if (hp > 0)
             return;
+
         isLive = false;
         DropItem();
-        DieAnim();
+        StartCoroutine(DieAnim());
         anim.SetActive(true);
 
         if (spriter.flipX)
@@ -180,7 +184,12 @@ public class Monster : PooledObject, IDamagable
         initEXP.Init(itemLevel);
 
         // 코인
-        Coin initCoin = Manager.Pool.GetPool(coin, transform.position, transform.rotation).GetComponent<Coin>();
-        initCoin.Init(itemLevel);
+        // 코인은 항상 드랍 되는 것이 아니니까 확률을 잡고 일정확률일 경우에 드랍
+        int ran = Random.Range(0, 100); // 0 ~ 99
+        if (ran < 5)
+        {
+            Coin initCoin = Manager.Pool.GetPool(coin, transform.position, transform.rotation).GetComponent<Coin>();
+            initCoin.Init(itemLevel);
+        }
     }
 }

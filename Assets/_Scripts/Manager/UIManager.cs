@@ -30,7 +30,7 @@ public class UIManager : Singleton<UIManager>
         Instantiate(eventSystem);
     }
 
-    public T ShowPopUpUI<T>(T popUpUI) where T : PopUpUI
+    public virtual T ShowPopUpUI<T>(T popUpUI) where T : PopUpUI
     {
         if (popUpStack.Count > 0)
         {

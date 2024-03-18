@@ -14,6 +14,7 @@ TagManager:
   - BossSkill
   - ItemGetter
   - EXP
+  - ActiveCheck
   layers:
   - Default
   - TransparentFX

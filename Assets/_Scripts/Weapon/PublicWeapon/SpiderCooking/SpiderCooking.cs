@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class SpiderCooking : MonoBehaviour
+public class SpiderCooking : MonoBehaviour, IActiveCheck
 {
     [SerializeField] public int atk;
     [SerializeField] public float interval;

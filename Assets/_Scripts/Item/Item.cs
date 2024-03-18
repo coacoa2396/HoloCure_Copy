@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : PooledObject
 {
-    [SerializeField] Collider2D coll;
+    [SerializeField] protected Collider2D coll;
     [SerializeField] protected PlayerController player;
 
     protected virtual void OnEnable()

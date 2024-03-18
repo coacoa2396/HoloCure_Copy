@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] public SpriteRenderer spriter;
     [SerializeField] Animator animator;
     [SerializeField] GameObject ItemGetter;
+    [SerializeField] GameObject[] activeFalse;
 
     [Header("Event")]
     [SerializeField] public UnityEvent OnFired;
@@ -45,6 +46,14 @@ public class PlayerController : MonoBehaviour, IDamagable
         HP = 20;
         curEXP = 0;
         needEXP = 100;
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < activeFalse.Length; i++)
+        {
+            activeFalse[i].gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RevolvingWeapon : Weapon
+public class RevolvingWeapon : Weapon, IActiveCheck
 {
     public int id;
     public int prefabId;

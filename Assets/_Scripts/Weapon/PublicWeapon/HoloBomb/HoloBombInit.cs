@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoloBombInit : RangedWeapon
+public class HoloBombInit : RangedWeapon, IActiveCheck
 {
     protected override void Awake()
     {

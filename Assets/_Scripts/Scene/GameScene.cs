@@ -25,6 +25,11 @@ public class GameScene : BaseScene
 
         for (int i = 0;i < items.Length; i++)
         {
+            if (i == 2)
+            {
+                Manager.Pool.CreatePool(items[i], 16, 32);
+                continue;
+            }
             Manager.Pool.CreatePool(items[i], 128, 1024);
         }
     }

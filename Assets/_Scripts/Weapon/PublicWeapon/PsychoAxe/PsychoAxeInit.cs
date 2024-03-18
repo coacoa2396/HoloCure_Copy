@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PsychoAxeInit : RangedWeapon
+public class PsychoAxeInit : RangedWeapon, IActiveCheck
 {
     protected override void Awake()
     {
@@ -11,6 +11,7 @@ public class PsychoAxeInit : RangedWeapon
         bulletCount = 1;
         interval = 3f;
     }
+       
 
     protected override void Update()
     {

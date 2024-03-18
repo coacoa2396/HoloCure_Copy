@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FanBeamInit : MonoBehaviour
+public class FanBeamInit : MonoBehaviour, IActiveCheck
 {
     [SerializeField] Bullet prefab;
     [SerializeField] Bullet fanBeam;
