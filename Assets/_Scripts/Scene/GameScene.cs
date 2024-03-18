@@ -8,6 +8,8 @@ public class GameScene : BaseScene
     [SerializeField] Weapon[] Weapons;
     [SerializeField] public Item[] items;
 
+    [SerializeField] GameOverUI gameOverUI;
+
     public float gameTime;
     public float maxGameTime = 4 * 10f;
     public int level;
@@ -56,5 +58,8 @@ public class GameScene : BaseScene
         yield return null;
     }
 
-
+    public void SetOnGameOverUI()
+    {
+        gameOverUI.gameObject.SetActive(true);
+    }
 }

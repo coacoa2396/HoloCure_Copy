@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         MaxHP = 20;
         curEXP = 0;
         needEXP = 100;
+        curCoin = 0;
         HP = MaxHP;
     }
 
@@ -180,16 +181,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator IInvincible()
     {
-        //gameObject.layer = 9;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), true);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), true);
+        gameObject.layer = 9;
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), true);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), true);
 
-        yield return new WaitForSeconds(50f);
+        yield return new WaitForSeconds(0.5f);
 
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), false);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), false);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), false);
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), false);
 
-        //gameObject.layer = 6;
+        gameObject.layer = 6;
     }
 
     public void Die()
