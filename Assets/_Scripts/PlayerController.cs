@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Debug.Log("다 통과?");
+        StartCoroutine(IInvincible());
     }
 
     void LevelCheck()
@@ -176,6 +176,20 @@ public class PlayerController : MonoBehaviour
     void OffDamaged()
     {
         spriter.color = new Color(1, 1, 1, 1);   // 투명도 원래대로 변경
+    }
+
+    IEnumerator IInvincible()
+    {
+        //gameObject.layer = 9;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), true);
+
+        yield return new WaitForSeconds(50f);
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Monster"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("BossSkill"), false);
+
+        //gameObject.layer = 6;
     }
 
     public void Die()
