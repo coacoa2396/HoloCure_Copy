@@ -11,6 +11,8 @@ public class GameScene : BaseScene
     public float gameTime;
     public float maxGameTime = 4 * 10f;
     public int level;
+    public int killCount;
+
     private void Awake()
     {
         for (int i = 0; i < monsterPrefab.Length; i++)

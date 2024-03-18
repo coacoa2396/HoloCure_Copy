@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedWeapon : MonoBehaviour
+public class RangedWeapon : Weapon
 {
     protected int bulletCount;
     protected float timer;

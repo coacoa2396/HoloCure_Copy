@@ -76,6 +76,7 @@ public class ItemBoxUI : PopUpUI
 
     public void OnClickGet()
     {
+        box.equipUI.SetWeapon(box.getSprite);
         box.LevelUp(box.randomNumber);
         box.DestroyBox();
         BoxUIExit();

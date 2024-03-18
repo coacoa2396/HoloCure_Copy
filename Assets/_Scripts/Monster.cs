@@ -170,6 +170,7 @@ public class Monster : PooledObject, IDamagable
 
     public virtual void Die()
     {
+        scene.killCount++;
         gameObject.SetActive(false);
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDamagable
+public class PlayerController : MonoBehaviour
 {
     public Vector2 inputVec;
 
@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] Animator animator;
     [SerializeField] GameObject ItemGetter;
     [SerializeField] GameObject[] activeFalse;
+    [SerializeField] public Sprite personalWeaponSprite;
 
-    [Header("Event")]
-    [SerializeField] public UnityEvent OnFired;
+    [Header("Event")]    
     [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
@@ -43,9 +43,10 @@ public class PlayerController : MonoBehaviour, IDamagable
         ItemGetter = GameObject.FindGameObjectWithTag("ItemGetter");
 
         level = 1;
-        HP = 20;
+        MaxHP = 20;
         curEXP = 0;
         needEXP = 100;
+        HP = MaxHP;
     }
 
     private void Start()
@@ -80,8 +81,11 @@ public class PlayerController : MonoBehaviour, IDamagable
             collision.gameObject.transform.tag == "Item"))
             return;
 
+        Debug.Log(collision.gameObject.name);
+
         if (collision.gameObject.transform.tag == "Monster")
         {
+            Debug.Log("몬스터한테 맞음");
             Monster monster = collision.gameObject.GetComponent<Monster>();
 
             float timer = 1.5f;
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
         if (collision.gameObject.transform.tag == "BossSkill")
         {
+            Debug.Log("보스스킬에 맞음");
             BossSkill bossSkill = collision.gameObject.GetComponent<BossSkill>();
 
             float timer = 1.5f;
@@ -106,7 +111,9 @@ public class PlayerController : MonoBehaviour, IDamagable
                 TakeDamage(bossSkill.ATK);
                 DamagedEffect(bossSkill.transform.position);
             }
-        }        
+        }
+
+        Debug.Log("다 통과?");
     }
 
     void LevelCheck()
@@ -150,6 +157,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public void TakeDamage(int damage)
     {
         Debug.Log("아야");
+        
         HP -= damage;
 
         if (HP > 0)

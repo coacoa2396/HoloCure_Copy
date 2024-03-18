@@ -7,6 +7,7 @@ public class ItemBox : Item
     [SerializeField] Sprite[] weaponSprites;
     [SerializeField] GameObject[] activeCheck;
     [SerializeField] ItemBoxUI ui;
+    [SerializeField] public Equipment equipUI;
 
     List<Dictionary<string, object>> csv;
 
@@ -22,12 +23,19 @@ public class ItemBox : Item
         List<string> list = new List<string>();
         
         csv = CSVReader.Read("Data/CSV/ItemTable");
-        activeCheck = GameObject.FindGameObjectsWithTag("ActiveCheck");        
+
+        activeCheck[0] = GameObject.FindGameObjectWithTag("AmePistol");
+        activeCheck[1] = GameObject.FindGameObjectWithTag("PsychoAxe");
+        activeCheck[2] = GameObject.FindGameObjectWithTag("BLBook");
+        activeCheck[3] = GameObject.FindGameObjectWithTag("FanBeam");
+        activeCheck[4] = GameObject.FindGameObjectWithTag("SpiderCooking");
+        activeCheck[5] = GameObject.FindGameObjectWithTag("HoloBomb");                
     }
 
     protected override void OnEnable()
     {
-
+        base.OnEnable();
+        equipUI = FindAnyObjectByType<Equipment>();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +59,7 @@ public class ItemBox : Item
             // 무기 획득 스크립트
             getName = (string)csv[randomNumber]["name"];
             getScript = (string)csv[randomNumber]["Get"];
-            getSprite = weaponSprites[randomNumber];
+            getSprite = weaponSprites[randomNumber];            
         }
 
         // 아이템박스 ui 불러오기
@@ -82,6 +90,7 @@ public class ItemBox : Item
         {
             // 해당 무기의 게임오브젝트를 셋 액티브
             activeCheck[number].SetActive(true);
+            
         }
     }
 

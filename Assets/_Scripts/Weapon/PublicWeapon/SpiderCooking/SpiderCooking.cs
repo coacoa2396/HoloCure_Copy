@@ -28,6 +28,7 @@ public class SpiderCooking : MonoBehaviour, IActiveCheck
         for (int i = 0; i < size; i++)
         {
             IDamagable damagable = colliders[i].GetComponent<IDamagable>();
+            
             damagable?.TakeDamage(atk);
         }
     }

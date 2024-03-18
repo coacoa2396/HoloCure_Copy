@@ -9,7 +9,11 @@ public class BLBook : Bullet
     protected override void Awake() { }
 
     protected override void Update() { }
-    
+
+    protected override void OnEnable()
+    {
+        
+    }
 
     public void Init(float damage, int per)
     {

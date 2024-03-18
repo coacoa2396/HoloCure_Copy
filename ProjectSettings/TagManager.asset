@@ -14,7 +14,14 @@ TagManager:
   - BossSkill
   - ItemGetter
   - EXP
-  - ActiveCheck
+  - AmePistol
+  - BLBook
+  - FanBeam
+  - SpiderCooking
+  - HoloBomb
+  - PsychoAxe
+  - Wslot
+  - Eslot
   layers:
   - Default
   - TransparentFX

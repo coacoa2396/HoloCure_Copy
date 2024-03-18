@@ -4,23 +4,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EXP_Bar : InGameUI
+public class CountUI : InGameUI
 {
-    [SerializeField] Slider slider;
+    [SerializeField] TMP_Text Coin;
+    [SerializeField] TMP_Text Kill;
+    
     [SerializeField] PlayerController player;
-    [SerializeField] TMP_Text text;
+    [SerializeField] GameScene gameScene;
 
     protected override void Awake()
     {
         base.Awake();
-        slider = GetComponent<Slider>();
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        gameScene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
+        
     }
 
     private void LateUpdate()
     {
-        float expPer = (float)player.curEXP / player.needEXP;                
-        slider.value = expPer;
-        text.text = $"LV : {player.level}";
+        Coin.text = $"{player.curCoin}";
+        Kill.text = $"{gameScene.killCount}";
     }
 }

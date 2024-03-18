@@ -4,23 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EXP_Bar : InGameUI
+public class CharHP : InGameUI
 {
-    [SerializeField] Slider slider;
-    [SerializeField] PlayerController player;
+    [SerializeField] Slider hpBar;
     [SerializeField] TMP_Text text;
+
+    [SerializeField] PlayerController player;
 
     protected override void Awake()
     {
         base.Awake();
-        slider = GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void LateUpdate()
     {
-        float expPer = (float)player.curEXP / player.needEXP;                
-        slider.value = expPer;
-        text.text = $"LV : {player.level}";
+        float hpPer = (float)player.HP / player.MaxHP;
+        hpBar.value = hpPer;
+
+        text.text = $"{player.HP} / {player.MaxHP}";
     }
 }
