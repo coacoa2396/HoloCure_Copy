@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SmallAme : Boss
 {
@@ -10,6 +11,7 @@ public class SmallAme : Boss
 
     float skillCoolTime;
 
+    [SerializeField] public UnityEvent OnDied;
 
     bool skillOn;
 
@@ -85,7 +87,33 @@ public class SmallAme : Boss
         }
     }
 
+    public override void TakeDamage(int damage)
+    {
+        HP -= damage;
 
+        if (HP > 0)
+            return;
+        isLive = false;
+        DropItem();
+        scene.isGameClear =true;
+        StartCoroutine(DieAnim());
+    }
+
+    public override void DamagedEffect(Vector2 targetPos)
+    {
+
+    }
+
+    protected override IEnumerator DieAnim()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Die();
+    }
+
+    public override void Die()
+    {
+        Destroy(gameObject);
+    }
 
     protected override void Tracing(Rigidbody2D target)
     {

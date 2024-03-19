@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameScene : BaseScene
 {
@@ -9,11 +10,16 @@ public class GameScene : BaseScene
     [SerializeField] public Item[] items;
 
     [SerializeField] GameOverUI gameOverUI;
+    [SerializeField] GameClearUI gameClearUI;
+
+    public bool isGameClear { get { return isGameClear; } set {  isGameClear = value; if (isGameClear == true) OnCleared?.Invoke();  } }
 
     public float gameTime;
     public float maxGameTime = 4 * 10f;
     public int level;
     public int killCount;
+
+    [SerializeField] UnityEvent OnCleared;
 
     private void Awake()
     {
@@ -38,6 +44,11 @@ public class GameScene : BaseScene
         }
     }
 
+    private void Start()
+    {
+        isGameClear = false;
+    }
+
     private void Update()
     {
         gameTime += Time.deltaTime;        
@@ -56,5 +67,22 @@ public class GameScene : BaseScene
     public void SetOnGameOverUI()
     {
         gameOverUI.gameObject.SetActive(true);
+    }
+
+    public void SetOnGameClearUI()
+    {
+        gameClearUI.gameObject.SetActive(true);
+    }
+
+    public void ClearGame()
+    {
+        StartCoroutine(Clear());
+    }
+
+    IEnumerator Clear()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        SetOnGameClearUI();
     }
 }

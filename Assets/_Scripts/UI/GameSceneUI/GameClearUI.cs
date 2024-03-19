@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverUI : InGameUI
+public class GameClearUI : InGameUI
 {
     [SerializeField] Animator animator;
 
     private void OnEnable()
     {
         Time.timeScale = 0f;
-        animator.SetTrigger("GameOver");
+        animator.SetTrigger("GameClear");
     }
 
     public void GoTitle()
