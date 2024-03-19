@@ -20,7 +20,7 @@ public class ItemBox : Item
     {
         coll = GetComponent<Collider2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        List<string> list = new List<string>();
+        
         
         csv = CSVReader.Read("Data/CSV/ItemTable");
 

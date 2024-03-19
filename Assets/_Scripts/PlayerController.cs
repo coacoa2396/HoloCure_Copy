@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject ItemGetter;
     [SerializeField] GameObject[] activeFalse;
     [SerializeField] public Sprite personalWeaponSprite;
+    [SerializeField] LevelUpUI levelUpUI;
 
     [Header("Event")]    
     [SerializeField] public UnityEvent OnDied;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
         level = 1;
         MaxHP = 20;
         curEXP = 0;
-        needEXP = 100;
+        needEXP = 20;
         curCoin = 0;
         HP = MaxHP;
     }
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
         curEXP = curEXP - needEXP;
         needEXP += (int)(needEXP * 0.2);
         level++;
+        Manager.UI.ShowPopUpUI(levelUpUI);
     }
 
     void Move()

@@ -95,7 +95,7 @@ public class SmallAme : Boss
             return;
         isLive = false;
         DropItem();
-        scene.isGameClear =true;
+        scene.isGameClear = true;
         StartCoroutine(DieAnim());
     }
 

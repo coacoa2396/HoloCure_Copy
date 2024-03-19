@@ -772,7 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
   followOffset: {x: 0, y: 0, z: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 102283623}
 --- !u!95 &102283623
 Animator:
   serializedVersion: 5
@@ -1606,6 +1606,13 @@ MonoBehaviour:
   - {fileID: 7221153355686737755, guid: 0a7743045dc62b5438c22879c592fed6, type: 3}
   - {fileID: 4479512964407960435, guid: 33424c33fc68e5b4e8b3241b66b5aa95, type: 3}
   - {fileID: 8307915873046396104, guid: 36c9aa82da832b04aa8931f8f55e0833, type: 3}
+  activeCheck:
+  - {fileID: 2009033655}
+  - {fileID: 1482442466}
+  - {fileID: 1537085691}
+  - {fileID: 2146333943}
+  - {fileID: 412985449}
+  - {fileID: 1598315815}
   gameOverUI: {fileID: 486687787}
   gameClearUI: {fileID: 102283622}
   gameTime: 0
@@ -7144,6 +7151,7 @@ MonoBehaviour:
   - {fileID: 412985449}
   - {fileID: 1598315815}
   personalWeaponSprite: {fileID: 21300000, guid: 3b395025304d19743aa61b1aa97f1bbb, type: 3}
+  levelUpUI: {fileID: 2561510776285325212, guid: 66390ade378ab8047a7495dec6e58a86, type: 3}
   OnDied:
     m_PersistentCalls:
       m_Calls:
@@ -8455,7 +8463,7 @@ GameObject:
   - component: {fileID: 1623289524}
   m_Layer: 5
   m_Name: Equipment
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
