@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TitleScene : BaseScene
 {
+    [SerializeField] SoundUI soundUI;
+
     private void Start()
     {
         Manager.Sound.PlayBGM("TitleBGM");
@@ -22,5 +24,10 @@ public class TitleScene : BaseScene
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SoundSetting()
+    {
+        Manager.UI.ShowPopUpUI(soundUI);
     }
 }
