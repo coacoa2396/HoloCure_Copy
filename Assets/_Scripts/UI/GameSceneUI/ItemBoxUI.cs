@@ -92,4 +92,9 @@ public class ItemBoxUI : PopUpUI
     {
         Manager.UI.ClosePopUpUI();
     }
+
+    public void BoxOpenSound()
+    {
+        Manager.Sound.PlaySFX("OpenBox");
+    }
 }

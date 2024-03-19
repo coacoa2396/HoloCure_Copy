@@ -89,6 +89,8 @@ public class Monster : PooledObject, IDamagable
         if (!isLive)
             return;
 
+        Manager.Sound.PlaySFX("MonsterDamaged");
+
         Debug.Log("몬스터 피격");
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();

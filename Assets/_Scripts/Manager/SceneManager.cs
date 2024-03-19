@@ -40,7 +40,7 @@ public class SceneManager : Singleton<SceneManager>
         yield return FadeOut();
 
         Manager.Pool.ClearPool();
-        // Manager.Sound.StopSFX();
+        Manager.Sound.StopBGM();
         Manager.UI.ClearPopUpUI();
         Manager.UI.ClearWindowUI();
         Manager.UI.CloseInGameUI();

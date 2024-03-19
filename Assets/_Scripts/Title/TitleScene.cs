@@ -15,8 +15,8 @@ public class TitleScene : BaseScene
     }
 
     public override IEnumerator LoadingRoutine()
-    {
-        yield return null;
+    {        
+        yield return null;        
     }
 
     public void QuitGame()

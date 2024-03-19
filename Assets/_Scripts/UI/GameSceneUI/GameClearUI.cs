@@ -10,6 +10,8 @@ public class GameClearUI : InGameUI
     {
         Time.timeScale = 0f;
         animator.SetTrigger("GameClear");
+        Manager.Sound.StopBGM();
+        Manager.Sound.PlaySFX("GameClear");
     }
 
     public void GoTitle()

@@ -60,6 +60,7 @@ public class EXP : Item
         if (collision.transform.tag == "Player")
         {            
             player.curEXP += amount;
+            Manager.Sound.PlaySFX("GetEXP");
             base.OnTriggerEnter2D(collision);
         }
 

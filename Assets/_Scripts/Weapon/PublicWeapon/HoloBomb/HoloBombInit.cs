@@ -30,7 +30,7 @@ public class HoloBombInit : RangedWeapon, IActiveCheck
         for (int i = 0; i < bulletCount; i++)
         {
             PooledObject instance = Manager.Pool.GetPool(bullet, transform.position, Quaternion.identity);
-            
+            Manager.Sound.PlaySFX("HoloBomb");
             yield return new WaitForSeconds(0.2f);
         }
 

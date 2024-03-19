@@ -49,6 +49,7 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
     void FanBeamSetOn()
     {
         fanBeam.gameObject.SetActive(true);
+        Manager.Sound.PlaySFX("FanBeam");
     }
 
     void FlipCheck()

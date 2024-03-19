@@ -10,6 +10,8 @@ public class GameOverUI : InGameUI
     {
         Time.timeScale = 0f;
         animator.SetTrigger("GameOver");
+        Manager.Sound.StopBGM();
+        Manager.Sound.PlaySFX("GameOver");
     }
 
     public void GoTitle()

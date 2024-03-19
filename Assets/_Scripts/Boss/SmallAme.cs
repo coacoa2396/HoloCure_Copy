@@ -167,4 +167,14 @@ public class SmallAme : Boss
     {
         animator.SetTrigger("GroundPound");
     }
+
+    void SoundJump()
+    {
+        Manager.Sound.PlaySFX("SmallAmeJump");
+    }
+
+    void SoundAttack()
+    {
+        Manager.Sound.PlaySFX("SmallAmeAttack");
+    }
 }

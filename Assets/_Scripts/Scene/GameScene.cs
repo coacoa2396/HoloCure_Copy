@@ -66,6 +66,7 @@ public class GameScene : BaseScene
     private void Start()
     {
         isGameClear = false;
+        Manager.Sound.PlayBGM("StageOneBGM");
     }
 
     private void Update()

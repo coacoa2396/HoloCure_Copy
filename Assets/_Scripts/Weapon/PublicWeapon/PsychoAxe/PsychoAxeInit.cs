@@ -15,6 +15,14 @@ public class PsychoAxeInit : RangedWeapon, IActiveCheck
 
     protected override void Update()
     {
-        base.Update();
+        timer += Time.deltaTime;
+
+        if (timer > interval)
+        {
+            timer = 0f;
+
+            Manager.Sound.PlaySFX("PsychoAxe");
+            StartCoroutine(Fire());
+        }
     }
 }

@@ -55,6 +55,7 @@ public class LevelUpUI : PopUpUI
 
     private void OnEnable()
     {
+        Manager.Sound.PlaySFX("LevelUp");
         RandomPick();
         SlotSet();
     }

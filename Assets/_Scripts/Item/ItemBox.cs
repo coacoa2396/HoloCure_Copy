@@ -42,7 +42,9 @@ public class ItemBox : Item
     {
         if (!(collision.transform.tag == "Player"))
             return;
-                
+
+        Manager.Sound.PlaySFX("GetBox");
+
         // 무기 랜덤으로 돌리기
         randomNumber = Random.Range(0, 6);
 
