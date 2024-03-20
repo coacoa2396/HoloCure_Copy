@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossSpawner : Spawner
 {
+    [SerializeField] Monster[] semiBosses;
+
     protected override void Awake()
     {
         gameScene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
@@ -11,13 +13,30 @@ public class BossSpawner : Spawner
 
     protected override void Update()
     {
-        if (gameScene.gameTime > 600f)
+        if ((int)gameScene.gameTime == 600)
         {
             Spawn(monsterPrefab[0]);
         }
-        else if (gameScene.gameTime > 1200f)
+        else if ((int)gameScene.gameTime > 1200f)
         {
             Spawn(monsterPrefab[1]);
+        }
+
+        if((int)gameScene.gameTime == 200f)
+        {
+            Spawn(semiBosses[0]);
+        }
+        else if ((int)gameScene.gameTime == 400f)
+        {
+            Spawn(semiBosses[1]);
+        }
+        else if ((int)gameScene.gameTime == 800f)
+        {
+            Spawn(semiBosses[2]);
+        }
+        else if ((int)gameScene.gameTime == 1000f)
+        {
+            Spawn(semiBosses[3]);
         }
 
     }

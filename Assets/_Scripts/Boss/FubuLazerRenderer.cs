@@ -33,4 +33,9 @@ public class FubuLazerRenderer : BossSkill
     {
         gameObject.SetActive(false);
     }
+
+    public void SoundFire()
+    {
+        Manager.Sound.PlaySFX("FubuLazer");
+    }
 }

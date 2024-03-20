@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Sprite personalWeaponSprite;
     [SerializeField] LevelUpUI levelUpUI;
 
-    [Header("Event")]    
+    [Header("Event")]
     [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
@@ -157,10 +157,22 @@ public class PlayerController : MonoBehaviour
         aimDir.Normalize();
     }
 
+    void OnCheat(InputValue value)
+    {
+        if (gameObject.layer == 6)
+        {
+            gameObject.layer = 9;
+        }
+        else
+        {
+            gameObject.layer = 6;
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         Manager.Sound.PlaySFX("PlayerDamaged");
-        
+
         HP -= damage;
 
         if (HP > 0)

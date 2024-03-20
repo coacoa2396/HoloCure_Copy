@@ -23,6 +23,7 @@ TagManager:
   - Wslot
   - Eslot
   - Equipment
+  - SemiBoss
   layers:
   - Default
   - TransparentFX

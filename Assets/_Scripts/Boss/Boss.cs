@@ -5,7 +5,7 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class Boss : Monster
 {
-    [SerializeField] ItemBox box;
+    [SerializeField] ItemBox itemBox;
 
     protected override void Awake()
     {
@@ -100,6 +100,6 @@ public class Boss : Monster
         }
 
         // 아이템 박스
-        Manager.Pool.GetPool(box, transform.position, transform.rotation);
+        Manager.Pool.GetPool(itemBox, transform.position, transform.rotation);
     }
 }
