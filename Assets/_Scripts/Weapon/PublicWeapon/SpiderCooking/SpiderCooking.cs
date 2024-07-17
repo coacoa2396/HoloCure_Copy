@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class SpiderCooking : MonoBehaviour, IActiveCheck
+public class SpiderCooking : Weapon, IActiveCheck
 {
-    [SerializeField] public int atk;
+    
     [SerializeField] public float interval;
 
     float timer;
+
+    private void Awake()
+    {
+        atk = 99;
+    }
 
     private void Update()
     {
@@ -31,6 +36,13 @@ public class SpiderCooking : MonoBehaviour, IActiveCheck
             
             damagable?.TakeDamage(atk);
         }
+    }
+
+    private void LateUpdate()
+    {
+        Vector2 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        transform.position = playerPos;
     }
 
     private void OnDrawGizmosSelected()

@@ -15,6 +15,8 @@ public class BLBook : Bullet
         
     }
 
+    
+
     public void Init(float damage, int per)
     {
         this.damage = damage;

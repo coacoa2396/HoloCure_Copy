@@ -18,6 +18,7 @@ public class HoloBomb : Bullet
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         throwSpeed = 60f;
         decreaseSpeed = 2f;
+        
     }
 
     protected override void Update()

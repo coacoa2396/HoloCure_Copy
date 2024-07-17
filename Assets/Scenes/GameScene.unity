@@ -7023,6 +7023,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8230025601759099859, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
   m_PrefabInstance: {fileID: 7485057341333231675}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1326375497
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412985449}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1367555595
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,7 +7833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482442467}
   - component: {fileID: 1482442468}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Weapon_PsychoAxe
   m_TagString: PsychoAxe
   m_Icon: {fileID: 0}
@@ -8092,7 +8119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537085692}
   - component: {fileID: 1537085693}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Weapon_BLBook
   m_TagString: BLBook
   m_Icon: {fileID: 0}
@@ -8181,7 +8208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598315816}
   - component: {fileID: 1598315817}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Weapon_HoloBomb
   m_TagString: HoloBomb
   m_Icon: {fileID: 0}
@@ -10351,7 +10378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2009033656}
   - component: {fileID: 2009033657}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Weapon0_AmePistol
   m_TagString: AmePistol
   m_Icon: {fileID: 0}
@@ -11259,7 +11286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146333944}
   - component: {fileID: 2146333945}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Weapon_FanBeam
   m_TagString: FanBeam
   m_Icon: {fileID: 0}
@@ -11305,6 +11332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1367555600}
     m_Modifications:
+    - target: {fileID: 1697906197784144301, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8230025601759099859, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11350,6 +11381,10 @@ PrefabInstance:
       value: Weapon_SpiderCooking
       objectReference: {fileID: 0}
     - target: {fileID: 8641521100992061974, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641521100992061974, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11360,7 +11395,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8641521100992061974, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1326375497}
   m_SourcePrefab: {fileID: 100100000, guid: f921835b7e1ff3e4ba3163dd7f9eca4d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

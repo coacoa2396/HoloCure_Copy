@@ -27,7 +27,7 @@ public class GameScene : BaseScene
     }
 
     public float gameTime;
-    public float maxGameTime = 4 * 10f;
+    public float maxGameTime = 60 * 20f;
     public int level;
     public int killCount;
 

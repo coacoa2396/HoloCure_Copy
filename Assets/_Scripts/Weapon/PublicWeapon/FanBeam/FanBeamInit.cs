@@ -20,22 +20,21 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
 
     private void OnEnable()
     {
-        if (fanBeam == null)
-        {
-            fanBeam = Instantiate(prefab
-                , new Vector3(transform.position.x + 8, transform.position.y, transform.position.z)
-                , transform.rotation);
-            fanBeam.transform.parent = transform;
-            fanBeam.gameObject.SetActive(false);
-        }
+        fanBeam = Instantiate(prefab
+            , new Vector3(transform.position.x + 8, transform.position.y, transform.position.z)
+            , transform.rotation);
+        
+        fanBeam.gameObject.SetActive(true);
     }
 
     private void Update()
     {
+
         timer += Time.deltaTime;
 
         if (timer > interval)
         {
+            FlipCheck();
             timer = 0f;
             FanBeamSetOn();
         }
@@ -43,12 +42,27 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
 
     private void LateUpdate()
     {
-        FlipCheck();
+
     }
 
     void FanBeamSetOn()
     {
+        if (player.spriter.flipX)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        fanBeam = Instantiate(prefab
+                , new Vector3(transform.position.x + 8, transform.position.y, transform.position.z)
+                , transform.rotation);
+        
         fanBeam.gameObject.SetActive(true);
+
+
         Manager.Sound.PlaySFX("FanBeam");
     }
 

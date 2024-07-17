@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Weapon : PooledObject
 {
-    public int atk;
-    public int level;
+    public int atk = 99;
+    public int level = 1;
 
     public void LevelUp()
     {
-        atk += 10;
+        atk += 99;
         level++;
 
         if (level > 7 )

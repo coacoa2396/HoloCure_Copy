@@ -7,10 +7,13 @@ public class Fanbeam : Bullet
     [SerializeField] Animator animator;
     [SerializeField] Collider2D coll;
 
+
     protected override void Awake()
     {
         animator = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        atk = 99;
     }
 
     protected override void Update() { }
@@ -32,6 +35,6 @@ public class Fanbeam : Bullet
 
     public void Setoff()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

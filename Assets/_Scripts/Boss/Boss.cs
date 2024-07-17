@@ -79,7 +79,7 @@ public class Boss : Monster
             itemLevel = 5;
 
         // 경험치 아이템
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 5; i++)
         {
             Vector2 ranPos = new Vector2(transform.position.x + Random.Range(-2f, 2f), transform.position.y + Random.Range(-2f, 2f));
             EXP initEXP = Manager.Pool.GetPool(exp, ranPos, transform.rotation).GetComponent<EXP>();
