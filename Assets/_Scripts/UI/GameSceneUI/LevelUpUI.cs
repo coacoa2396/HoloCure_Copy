@@ -49,7 +49,8 @@ public class LevelUpUI : PopUpUI
         sel2 = -1;
         sel3 = -1;
 
-        scene = GameObject.FindGameObjectWithTag("GameScene").GetComponent<GameScene>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        scene = Manager.Scene.GetCurScene<GameScene>();
         equipUI = GameObject.FindGameObjectWithTag("Equipment").GetComponent<Equipment>();
     }
 

@@ -55,12 +55,12 @@ public class GameScene : BaseScene
             Manager.Pool.CreatePool(items[i], 128, 1024);
         }
 
-        activeCheck[0] = GameObject.FindGameObjectWithTag("AmePistol");
-        activeCheck[1] = GameObject.FindGameObjectWithTag("PsychoAxe");
-        activeCheck[2] = GameObject.FindGameObjectWithTag("BLBook");
-        activeCheck[3] = GameObject.FindGameObjectWithTag("FanBeam");
-        activeCheck[4] = GameObject.FindGameObjectWithTag("SpiderCooking");
-        activeCheck[5] = GameObject.FindGameObjectWithTag("HoloBomb");
+        //activeCheck[0] = GameObject.FindGameObjectWithTag("AmePistol");
+        //activeCheck[1] = GameObject.FindGameObjectWithTag("PsychoAxe");
+        //activeCheck[2] = GameObject.FindGameObjectWithTag("BLBook");
+        //activeCheck[3] = GameObject.FindGameObjectWithTag("FanBeam");
+        //activeCheck[4] = GameObject.FindGameObjectWithTag("SpiderCooking");
+        //activeCheck[5] = GameObject.FindGameObjectWithTag("HoloBomb");
     }
 
     private void Start()
