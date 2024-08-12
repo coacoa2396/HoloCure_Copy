@@ -83,7 +83,7 @@ public class Boss : Monster
         {
             Vector2 ranPos = new Vector2(transform.position.x + Random.Range(-2f, 2f), transform.position.y + Random.Range(-2f, 2f));
             EXP initEXP = Manager.Pool.GetPool(exp, ranPos, transform.rotation).GetComponent<EXP>();
-            initEXP.Init(itemLevel);
+            initEXP.Init(itemLevel, EXP.Mob.Boss);
         }
 
         // ÄÚÀÎ

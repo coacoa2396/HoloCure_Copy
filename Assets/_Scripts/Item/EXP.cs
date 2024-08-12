@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EXP : Item
 {
+    public enum Mob { Normal, Boss }    // 누가 만든 경험치인가?
+
     [SerializeField] EXP expPrefab;
     [SerializeField] SpriteRenderer spriter;
     [SerializeField] Sprite[] sprites;
@@ -14,7 +16,8 @@ public class EXP : Item
     [SerializeField] float speed;
 
     bool isTriger;
-
+    bool isMerge;       // 합쳐지는지 여부 -> 기본은 false -> 일반몹은 바로 true, 보스몹은 1초뒤 true
+    public Mob MobState;    // 몬스터의 노말, 보스 여부
 
     private List<Dictionary<string, object>> csv;
 
@@ -25,9 +28,17 @@ public class EXP : Item
         spriter = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
 
+        isMerge = false;
         Init(0);
     }
 
+    private void Start()
+    {
+        if (MobState == Mob.Normal)
+            isMerge = true;
+        else
+            StartCoroutine(IsMergeChanger());
+    }
 
     protected override void OnEnable()
     {
@@ -58,7 +69,7 @@ public class EXP : Item
         }
 
         if (collision.transform.tag == "Player")
-        {            
+        {
             player.curEXP += amount;
             Manager.Sound.PlaySFX("GetEXP");
             base.OnTriggerEnter2D(collision);
@@ -66,6 +77,8 @@ public class EXP : Item
 
         if (collision.transform.tag == "EXP")
         {
+            if (!isMerge)
+                return;
 
             EXP collEXP = collision.transform.GetComponent<EXP>();
 
@@ -103,11 +116,19 @@ public class EXP : Item
         rigid.MovePosition(rigid.position + nextDir);
     }
 
-    public void Init(int level)
+    public void Init(int level, Mob state)
     {
         gameObject.name = (string)csv[level]["name"];
         amount = (int)csv[level]["amount"];
         this.level = level;
         spriter.sprite = sprites[level];
+        MobState = state;
+    }
+
+    public IEnumerator IsMergeChanger()
+    {
+        yield return new WaitForSeconds(1f);
+
+        isMerge = true;
     }
 }

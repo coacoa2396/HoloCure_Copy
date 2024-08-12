@@ -183,7 +183,7 @@ public class Monster : PooledObject, IDamagable
 
         // 경험치 아이템
         EXP initEXP = Manager.Pool.GetPool(exp, transform.position, transform.rotation).GetComponent<EXP>();
-        initEXP.Init(itemLevel);
+        initEXP.Init(itemLevel, EXP.Mob.Normal);
 
         // 코인
         // 코인은 항상 드랍 되는 것이 아니니까 확률을 잡고 일정확률일 경우에 드랍
