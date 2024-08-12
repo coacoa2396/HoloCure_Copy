@@ -29,7 +29,7 @@ public class EXP : Item
         rigid = GetComponent<Rigidbody2D>();
 
         isMerge = false;
-        Init(0);
+        // Init(0);
     }
 
     private void Start()
@@ -97,7 +97,7 @@ public class EXP : Item
             {
                 collEXP.gameObject.SetActive(false);
                 EXP nextEXP = Manager.Pool.GetPool(expPrefab, nextPos, transform.rotation).GetComponent<EXP>();
-                nextEXP.Init(level + 1);
+                nextEXP.Init(level + 1, Mob.Normal);
                 gameObject.SetActive(false);
             }
             else
