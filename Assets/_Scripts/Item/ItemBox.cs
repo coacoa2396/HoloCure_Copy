@@ -24,18 +24,19 @@ public class ItemBox : Item
         
         csv = CSVReader.Read("Data/CSV/ItemTable");
 
-        activeCheck[0] = GameObject.FindGameObjectWithTag("AmePistol");
-        activeCheck[1] = GameObject.FindGameObjectWithTag("PsychoAxe");
-        activeCheck[2] = GameObject.FindGameObjectWithTag("BLBook");
-        activeCheck[3] = GameObject.FindGameObjectWithTag("FanBeam");
-        activeCheck[4] = GameObject.FindGameObjectWithTag("SpiderCooking");
-        activeCheck[5] = GameObject.FindGameObjectWithTag("HoloBomb");                
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         equipUI = FindAnyObjectByType<Equipment>();
+
+        activeCheck[0] = GameObject.FindGameObjectWithTag("AmePistol");
+        activeCheck[1] = GameObject.FindGameObjectWithTag("PsychoAxe");
+        activeCheck[2] = GameObject.FindGameObjectWithTag("BLBook");
+        activeCheck[3] = GameObject.FindGameObjectWithTag("FanBeam");
+        activeCheck[4] = GameObject.FindGameObjectWithTag("SpiderCooking");
+        activeCheck[5] = GameObject.FindGameObjectWithTag("HoloBomb");                
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
