@@ -7,7 +7,7 @@ public class Weapon : PooledObject
     public int atk = 99;
     public int level = 1;
 
-    public void LevelUp()
+    public virtual void LevelUp()
     {
         atk += 99;
         level++;

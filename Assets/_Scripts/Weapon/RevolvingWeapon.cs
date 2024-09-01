@@ -1,77 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RevolvingWeapon : Weapon, IActiveCheck
 {
     public int id;
-    public int prefabId;
-    public float damage;
+    public int prefabId;    
     public int count;
     public float speed;
 
-    
-
     private void Start()
     {
-        Init(); 
+        Init();
     }
 
     private void Update()
     {
-        switch (id)
-        {
-            case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime);
-                break;
-            default:
-                break;
-        }
-
-        // test
-        if (Input.GetKeyDown(KeyCode.Space))
-        {           
-            LevelUp(10, 1);
-        }
+        transform.Rotate(Vector3.back * speed * Time.deltaTime);
     }
 
-    public void LevelUp(float damage, int count)
+    public override void LevelUp()
     {
-        this.damage += damage;
-        this.count += count;
-
-        if (id == 0)
-        {            
-            Devide();            
-        }
+        base.LevelUp();
+        count++;
+        Devide();
     }
 
     public void Init()
     {
-        switch (id)
-        {
-            case 0:
-                speed = 150;
-                Devide();
-                break;
-            default:
-                break;
-        }
+        speed = 150;
+        Devide();
     }
 
-    
-            
     void Devide()
     {
         for (int i = 0; i < count; i++)
         {
             Transform bullet;
             if (i < transform.childCount)
-            {                
+            {
                 bullet = transform.GetChild(i);
             }
             else
-            {                
+            {
                 bullet = BookManager.instance.pool.Get(prefabId).transform;
                 bullet.parent = transform;
             }
@@ -83,8 +52,7 @@ public class RevolvingWeapon : Weapon, IActiveCheck
             Vector3 rotVec = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 1.5f, Space.World);
-            bullet.GetComponent<BLBook>().Init((int)damage, -1);     // -1 is Infinity Per.
-
+            bullet.GetComponent<BLBook>().Init(atk, -1);     // -1 is Infinity Per.
         }
     }
 }
