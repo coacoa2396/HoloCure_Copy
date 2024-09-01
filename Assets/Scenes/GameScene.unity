@@ -4668,8 +4668,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+      - m_Target: {fileID: 102283622}
+        m_TargetAssemblyTypeName: GameClearUI, Assembly-CSharp
         m_MethodName: ReStart
         m_Mode: 1
         m_Arguments:
@@ -8284,8 +8284,7 @@ MonoBehaviour:
   level: 0
   id: 0
   prefabId: 0
-  damage: 11
-  count: 3
+  count: 1
   speed: 0
 --- !u!1 &1540410663
 GameObject:
@@ -9992,8 +9991,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+      - m_Target: {fileID: 102283622}
+        m_TargetAssemblyTypeName: GameClearUI, Assembly-CSharp
         m_MethodName: GoTitle
         m_Mode: 1
         m_Arguments:
@@ -10864,8 +10863,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+      - m_Target: {fileID: 102283622}
+        m_TargetAssemblyTypeName: GameClearUI, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -11417,7 +11416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2146333944
 Transform:
   m_ObjectHideFlags: 0
