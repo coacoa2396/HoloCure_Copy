@@ -51,9 +51,13 @@ public class Boss : Monster
 
         if (HP > 0)
             return;
-        isLive = false;
-        DropItem();
-        StartCoroutine(DieAnim());
+
+        if (isLive == true)
+        {
+            DropItem();
+            StartCoroutine(DieAnim());
+            isLive = false;
+        }
     }
 
     public override void DamagedEffect(Vector2 targetPos)

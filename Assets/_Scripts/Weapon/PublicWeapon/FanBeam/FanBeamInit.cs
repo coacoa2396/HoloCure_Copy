@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FanBeamInit : MonoBehaviour, IActiveCheck
+public class FanBeamInit : Weapon, IActiveCheck
 {
-    [SerializeField] Bullet prefab;
-    [SerializeField] Bullet fanBeam;
+    [SerializeField] Bullet prefab;    
     [SerializeField] PlayerController player;
+    [SerializeField] GameObject pivot;
 
     [SerializeField] float interval;
 
@@ -16,16 +16,7 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
     {
         timer = 0f;
         player = GetComponentInParent<PlayerController>();
-    }
-
-    private void OnEnable()
-    {
-        fanBeam = Instantiate(prefab
-            , new Vector3(transform.position.x + 8, transform.position.y, transform.position.z)
-            , transform.rotation);
-        
-        fanBeam.gameObject.SetActive(true);
-    }
+    }    
 
     private void Update()
     {
@@ -40,28 +31,9 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
         }
     }
 
-    private void LateUpdate()
-    {
-
-    }
-
     void FanBeamSetOn()
     {
-        if (player.spriter.flipX)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
-        fanBeam = Instantiate(prefab
-                , new Vector3(transform.position.x + 8, transform.position.y, transform.position.z)
-                , transform.rotation);
-        
-        fanBeam.gameObject.SetActive(true);
-
+        prefab.gameObject.SetActive(true);
 
         Manager.Sound.PlaySFX("FanBeam");
     }
@@ -70,11 +42,11 @@ public class FanBeamInit : MonoBehaviour, IActiveCheck
     {
         if (player.spriter.flipX)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
+            pivot.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            pivot.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

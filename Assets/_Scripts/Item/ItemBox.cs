@@ -72,7 +72,7 @@ public class ItemBox : Item
 
     bool CheckActive(int number)
     {
-        if (activeCheck[number].activeSelf == true)
+        if (activeCheck[number] != null && activeCheck[number].activeSelf == true)
         {
             return true;
         }

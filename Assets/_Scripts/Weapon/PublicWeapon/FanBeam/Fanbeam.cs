@@ -35,6 +35,6 @@ public class Fanbeam : Bullet
 
     public void Setoff()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
