@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public UnityEvent OnDied;
 
     public Vector2 aimDir;
-
+    public GameObject[] ActiveFalse { get { return activeFalse; } }
 
     private void Awake()
     {
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < activeFalse.Length; i++)
+        for (int i = 1; i < activeFalse.Length; i++)
         {
             activeFalse[i].gameObject.SetActive(false);
         }
